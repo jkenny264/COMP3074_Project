@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="restaurant_ids">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="restaurant_names">
+        <item>rest1</item>
+        <item>rest2</item>
+        <item>rest3</item>
+        <item>rest4</item>
+        <item>rest5</item>
+        <item>rest6</item>
+        <item>rest7</item>
+        <item>rest8</item>
+        <item>rest9</item>
+        <item>rest10</item>
+    </string-array>
+
+</resources>
