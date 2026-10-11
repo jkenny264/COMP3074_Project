@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -81,39 +82,14 @@ fun LazyRestaurantList(modifier: Modifier, restaurants: List<Restaurant>) {
     }
 }
 
-@Composable
-fun MenuBar(modifier: Modifier) {
 
-    Row(modifier = modifier.fillMaxWidth().background(Color.LightGray),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Button(
-            onClick = {
-                //
-            },
-            modifier = modifier.padding(horizontal = 32.dp)
-        ) {
-            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-            Text(text = "Back")
-        }
-        Button(
-            onClick = {
-                //
-            },
-            modifier = modifier.padding(horizontal = 32.dp)
-        ) {
 
-            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-            Text(text = "Home")
-        }
-    }
-}
 
 @Composable
 fun RestaurantsScreen (modifier: Modifier) {
     val context = LocalContext.current
     val restaurants = remember { loadRestaurants(context)}
+
 
 
 //    Column() {
