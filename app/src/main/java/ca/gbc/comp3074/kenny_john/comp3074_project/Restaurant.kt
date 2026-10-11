@@ -11,6 +11,7 @@ data class Restaurant(
 //    val Phone: String,
 //    val Description: String,
 //    val tags: Array<String>
+    val rating: String,
 )
 
 
@@ -19,8 +20,14 @@ data class Restaurant(
 fun loadRestaurants(context: Context): List<Restaurant> {
     val ids = context.resources.getStringArray(R.array.restaurant_ids)
     val names = context.resources.getStringArray(R.array.restaurant_names)
+    val ratings = context.resources.getStringArray(R.array.ratings)
 
-    return ids.zip(names){
-        id, name -> Restaurant(id, name)
+    return ids.zip(names).zip(ratings) {
+            (id, name), rating -> Restaurant(id, name, rating)
     }
+}
+
+fun loadRestaurantById(context: Context, id: Int): Restaurant {
+    val restaurants = loadRestaurants(context);
+    return restaurants[id];
 }

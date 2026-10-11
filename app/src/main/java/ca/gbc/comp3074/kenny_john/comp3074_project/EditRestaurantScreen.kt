@@ -62,7 +62,8 @@ fun EditRestaurantScreen (modifier: Modifier) {
             val numRestaurants = restaurants.size
             val newRestaurant = Restaurant(
                 id = "${numRestaurants + 1000}",
-                name = "Restaurant ${numRestaurants + 1}"
+                name = "Restaurant ${numRestaurants + 1}",
+                rating = ""
             )
             restaurants.add(0, newRestaurant)
         },
