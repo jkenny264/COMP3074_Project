@@ -27,4 +27,16 @@
         <item>rest10</item>
     </string-array>
 
+    <string-array name="ratings">
+        <item>rate1</item>
+        <item>rate2</item>
+        <item>rate3</item>
+        <item>rate4</item>
+        <item>rate5</item>
+        <item>rate6</item>
+        <item>rate7</item>
+        <item>rate8</item>
+        <item>rate9</item>
+        <item>rate10</item>
+    </string-array>
 </resources>
