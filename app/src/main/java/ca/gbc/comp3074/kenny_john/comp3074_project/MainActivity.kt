@@ -53,11 +53,16 @@ class MainActivity : ComponentActivity() {
                     RestaurantsScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
- */
+
 
                     RestaurantDetailsScreen(
                         modifier = Modifier.padding(innerPadding),
                         id = 2
+                    )
+                    */
+
+                    HomeScreen(
+                        modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
