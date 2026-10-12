@@ -33,32 +33,32 @@ class MainActivity : ComponentActivity() {
         setContent {
             COMP3074_ProjectTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    Greeting(
-//                        name = "Android",
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
+/*
+                    CreateRatingScreen(
+                        modifier = Modifier.padding(innerPadding)
+                    )
 
-//                    CreateRatingScreen(
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
-//
-//                    EditRatingScreen(
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
+                    EditRatingScreen(
+                        modifier = Modifier.padding(innerPadding)
+                    )
 
-//                    CreateRestaurantScreen(
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
+                    CreateRestaurantScreen(
+                        modifier = Modifier.padding(innerPadding)
+                    )
 
                     EditRestaurantScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
 
+                    RestaurantsScreen(
+                        modifier = Modifier.padding(innerPadding)
+                    )
+ */
 
-
-//                    RestaurantsScreen(
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
+                    RestaurantDetailsScreen(
+                        modifier = Modifier.padding(innerPadding),
+                        id = 2
+                    )
                 }
             }
         }
@@ -69,7 +69,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MenuBar(modifier: Modifier) {
 
-    Row(modifier = modifier.fillMaxWidth().background(Color.LightGray),
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(Color.LightGray),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -102,7 +105,7 @@ fun MenuBar(modifier: Modifier) {
 }
 
 @Composable
-fun PrgApp (modifier: Modifier){
+fun PrgApp(modifier: Modifier) {
 
 }
 
