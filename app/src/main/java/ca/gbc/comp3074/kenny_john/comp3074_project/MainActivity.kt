@@ -59,9 +59,13 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(innerPadding),
                         id = 2
                     )
-                    */
 
                     HomeScreen(
+                        modifier = Modifier.padding(innerPadding)
+                    )
+
+ */
+                    AboutScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }

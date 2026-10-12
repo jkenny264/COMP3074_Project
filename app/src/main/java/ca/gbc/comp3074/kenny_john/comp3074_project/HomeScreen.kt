@@ -1,9 +1,7 @@
 package ca.gbc.comp3074.kenny_john.comp3074_project
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -27,7 +25,6 @@ fun HomeScreen(modifier: Modifier) {
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Text(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 64.dp),
             text = stringResource(R.string.app_name),
@@ -37,8 +34,8 @@ fun HomeScreen(modifier: Modifier) {
         )
 
         Image(
-            painter = painterResource(id = R.drawable.home),
-            contentDescription = "TEst"
+            painter = painterResource(id = R.drawable.placeholder),
+            contentDescription = "Placeholder Home Screen Image"
         )
         Spacer(modifier = Modifier.weight(1f))
         Button(onClick = {},
