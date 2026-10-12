@@ -23,7 +23,7 @@ fun RestaurantDetailsTextFields(modifier: Modifier, id: Int) {
 
     if (restaurant != null) {
         Text(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            modifier = Modifier.fillMaxWidth().padding(16.dp, top=48.dp),
             text = restaurant.name,
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
@@ -70,5 +70,5 @@ fun RestaurantDetailsScreen (modifier: Modifier, id: Int) {
 @Preview(showBackground = true)
 @Composable
 fun RestaurantDetailsScreenPreview() {
-    RestaurantDetailsScreen(modifier = Modifier, 0)
+    RestaurantDetailsScreen(modifier = Modifier, 1)
 }
