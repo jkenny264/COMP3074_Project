@@ -27,7 +27,8 @@ fun loadRestaurants(context: Context): List<Restaurant> {
     }
 }
 
-fun loadRestaurantById(context: Context, id: Int): Restaurant {
+fun loadRestaurantById(context: Context, id: Int): Restaurant? {
     val restaurants = loadRestaurants(context);
-    return restaurants[id];
+    val restaurant: Restaurant? = restaurants.find { it.id == id.toString()}
+    return restaurant;
 }
