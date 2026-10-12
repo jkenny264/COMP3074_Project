@@ -24,6 +24,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import ca.gbc.comp3074.kenny_john.comp3074_project.ui.theme.COMP3074_ProjectTheme
 
 class MainActivity : ComponentActivity() {
@@ -33,6 +36,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             COMP3074_ProjectTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+
+
+
+
+
+
 /*
                     CreateRatingScreen(
                         modifier = Modifier.padding(innerPadding)
@@ -65,9 +74,29 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+//@Composable
+//fun AppNavigation() {
+//    val navController = rememberNavController()
+//
+//    NavHost(
+//        navController = navController,
+//        startDestination = "home_screen"
+//    ) {
+//        composable("home_screen") {
+//            HomeScreen(
+//                modifier = Modifier,
+//                onHomeClick = {
+//                navController.navigate("home_screen")
+//            })
+//        }
+//
+//    }
+//}
+
 
 @Composable
-fun MenuBar(modifier: Modifier) {
+fun MenuBar(modifier: Modifier
+) {
 
     Row(
         modifier = modifier
@@ -76,15 +105,13 @@ fun MenuBar(modifier: Modifier) {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Button(
-            onClick = {
-                //
-            },
-            modifier = modifier.padding(horizontal = 32.dp)
-        ) {
-            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-            Text(text = "Back")
-        }
+//        Button(
+////            onClick = ,
+//            modifier = modifier.padding(horizontal = 32.dp)
+//        ) {
+//            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+//            Text(text = "Back")
+//        }
 
         Text(
             text = "<Logo>",
