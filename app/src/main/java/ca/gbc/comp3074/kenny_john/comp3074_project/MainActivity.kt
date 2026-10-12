@@ -64,9 +64,14 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(innerPadding)
                     )
 
- */
                     AboutScreen(
                         modifier = Modifier.padding(innerPadding)
+                    )
+ */
+
+                    RestaurantsSearchScreen(
+
+                        modifier = Modifier.padding(innerPadding),
                     )
                 }
             }
