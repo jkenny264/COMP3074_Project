@@ -55,6 +55,7 @@ fun RestaurantDetailsScreen (modifier: Modifier, id: Int) {
 
         RestaurantDetailsTextFields(modifier, id)
 
+        Spacer(modifier = Modifier.weight(1f))
         Button(onClick = {},
             modifier = modifier.fillMaxWidth().padding(16.dp)) {
 
