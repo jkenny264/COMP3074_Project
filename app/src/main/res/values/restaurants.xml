@@ -8,35 +8,23 @@
         <item>4</item>
         <item>5</item>
         <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
     </string-array>
 
     <string-array name="restaurant_names">
-        <item>rest1</item>
-        <item>rest2</item>
-        <item>rest3</item>
-        <item>rest4</item>
-        <item>rest5</item>
-        <item>rest6</item>
-        <item>rest7</item>
-        <item>rest8</item>
-        <item>rest9</item>
-        <item>rest10</item>
+        <item>Tequila Mockingbird</item>
+        <item>Thai Tanic</item>
+        <item>Nacho Average Diner</item>
+        <item>Take It Cheesy</item>
+        <item>Pho Real</item>
+        <item>Pizza My Heart</item>
     </string-array>
 
     <string-array name="ratings">
-        <item>rate1</item>
-        <item>rate2</item>
-        <item>rate3</item>
-        <item>rate4</item>
-        <item>rate5</item>
-        <item>rate6</item>
-        <item>rate7</item>
-        <item>rate8</item>
-        <item>rate9</item>
-        <item>rate10</item>
+        <item>5 Stars</item>
+        <item>5 Stars</item>
+        <item>5 Stars</item>
+        <item>5 Stars</item>
+        <item>5 Stars</item>
+        <item>5 Stars</item>
     </string-array>
 </resources>
