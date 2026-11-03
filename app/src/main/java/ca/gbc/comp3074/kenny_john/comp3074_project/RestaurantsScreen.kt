@@ -46,13 +46,13 @@ fun RestaurantItem(restaurant: Restaurant) {
                 .padding(16.dp)
         ) {
             Text(
-                text = restaurant.id,
+                text = restaurant.name,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.height(5.dp))
             Text(
-                text = restaurant.name,
+                text = restaurant.rating,
                 fontSize = 16.sp
             )
         }
@@ -108,4 +108,10 @@ fun RestaurantsScreen (modifier: Modifier) {
     }
 
 
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RestaurantsScreenPreview() {
+    RestaurantsScreen(modifier = Modifier)
 }
