@@ -40,7 +40,7 @@ fun RestaurantsSearchScreen (modifier: Modifier) {
             Text(text = "Search")
 
         }
-        LazyRestaurantList(modifier, restaurants)
+        LazyRestaurantList(modifier, restaurants, onRestaurantDetailsClick = {})
     }
 
 }
