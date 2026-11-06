@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.sp
 fun RestaurantDetailsTextFields(modifier: Modifier, id: Int) {
     val context = LocalContext.current
     val restaurant = loadRestaurantById(context, id)
-    val test = id
 
     if (restaurant != null) {
         Text(

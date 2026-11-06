@@ -46,11 +46,6 @@ fun RestaurantItem(restaurant: Restaurant, onRestaurantDetailsClick: (Int) -> Un
                 .padding(16.dp)
         ) {
             Text(
-                text = restaurant.id,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
                 text = restaurant.name,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
@@ -113,6 +108,7 @@ fun RestaurantsScreen (modifier: Modifier, onRestaurantDetailsClick: (Int) -> Un
 
 
 }
+
 
 //@Preview(showBackground = true)
 //@Composable
