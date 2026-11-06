@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun HomeScreen(modifier: Modifier) {
+fun HomeScreen(modifier: Modifier, onRestaurantsClick: () -> Unit, onAboutClick: () -> Unit) {
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -38,18 +38,32 @@ fun HomeScreen(modifier: Modifier) {
             contentDescription = "Placeholder Home Screen Image"
         )
         Spacer(modifier = Modifier.weight(1f))
-        Button(onClick = {},
+        Button(
+            onClick = {
+                onRestaurantsClick()
+            },
             modifier = modifier.padding(16.dp)) {
             Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
             Text(text = "Continue to App")
+
+        }
+        Button(
+            onClick = {
+                onAboutClick()
+            },
+            modifier = modifier.padding(16.dp)) {
+            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+            Text(text = "About")
 
         }
 
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun HomeScreenPreview() {
-    HomeScreen(modifier = Modifier)
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun HomeScreenPreview() {
+//    HomeScreen(
+//        modifier = Modifier
+//    )
+//}

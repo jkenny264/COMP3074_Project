@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun RestaurantItem(restaurant: Restaurant) {
+fun RestaurantItem(restaurant: Restaurant, onRestaurantDetailsClick: (Int) -> Unit) {
     Row(
         modifier = Modifier.padding(16.dp).fillMaxSize(),
         verticalAlignment = Alignment.CenterVertically
@@ -46,6 +46,11 @@ fun RestaurantItem(restaurant: Restaurant) {
                 .padding(16.dp)
         ) {
             Text(
+                text = restaurant.id,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
                 text = restaurant.name,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
@@ -55,12 +60,21 @@ fun RestaurantItem(restaurant: Restaurant) {
                 text = restaurant.rating,
                 fontSize = 16.sp
             )
+            Button(
+                onClick = {
+                    onRestaurantDetailsClick(restaurant.id.toInt())
+                },
+                modifier = Modifier.padding(16.dp)) {
+                Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+                Text(text = "Details")
+
+            }
         }
     }
 }
 
 @Composable
-fun LazyRestaurantList(modifier: Modifier, restaurants: List<Restaurant>) {
+fun LazyRestaurantList(modifier: Modifier, restaurants: List<Restaurant>, onRestaurantDetailsClick: (Int) -> Unit) {
 
     LazyColumn (
         modifier = modifier.padding(16.dp)
@@ -75,7 +89,7 @@ fun LazyRestaurantList(modifier: Modifier, restaurants: List<Restaurant>) {
         }
         items(restaurants){
             restaurant ->
-            RestaurantItem(restaurant)
+            RestaurantItem(restaurant, onRestaurantDetailsClick)
             HorizontalDivider()
         }
 
@@ -86,32 +100,22 @@ fun LazyRestaurantList(modifier: Modifier, restaurants: List<Restaurant>) {
 
 
 @Composable
-fun RestaurantsScreen (modifier: Modifier) {
+fun RestaurantsScreen (modifier: Modifier, onRestaurantDetailsClick: (Int) -> Unit) {
     val context = LocalContext.current
     val restaurants = remember { loadRestaurants(context)}
 
 
-
-//    Column() {
-//        Button(onClick = {}) {
-//            Text(text = "back")
-//            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-//        }
-//    }
-//    LazyRestaurantList(modifier, restaurants)
-
     Column(modifier = modifier.fillMaxWidth()){
 
-        MenuBar(modifier)
-        LazyRestaurantList(modifier, restaurants)
+        LazyRestaurantList(modifier, restaurants, onRestaurantDetailsClick)
 
     }
 
 
 }
 
-@Preview(showBackground = true)
-@Composable
-fun RestaurantsScreenPreview() {
-    RestaurantsScreen(modifier = Modifier)
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun RestaurantsScreenPreview() {
+//    RestaurantsScreen(modifier = Modifier)
+//}
