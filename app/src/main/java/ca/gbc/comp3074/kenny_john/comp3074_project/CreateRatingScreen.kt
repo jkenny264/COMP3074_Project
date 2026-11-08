@@ -53,7 +53,7 @@ fun CreateRatingTextFields(modifier: Modifier) {
 
 
 @Composable
-fun CreateRatingScreen (modifier: Modifier) {
+fun CreateRatingScreen (modifier: Modifier, restaurantId: Int) {
     val context = LocalContext.current
     val ratings = remember {
         mutableStateListOf<Rating>().apply {
@@ -61,8 +61,6 @@ fun CreateRatingScreen (modifier: Modifier) {
         }
     }
     Column(modifier = modifier.fillMaxWidth()){
-
-        MenuBar(modifier)
 
         CreateRatingTextFields(modifier)
 
@@ -84,8 +82,8 @@ fun CreateRatingScreen (modifier: Modifier) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun CreateRatingScreenPreview() {
-    CreateRatingScreen(modifier = Modifier)
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun CreateRatingScreenPreview() {
+//    CreateRatingScreen(modifier = Modifier)
+//}

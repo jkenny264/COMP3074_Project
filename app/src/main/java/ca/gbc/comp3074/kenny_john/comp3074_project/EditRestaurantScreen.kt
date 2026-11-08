@@ -21,8 +21,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun EditRestaurantTextFields(modifier: Modifier) {
+fun EditRestaurantTextFields(modifier: Modifier, id: Int) {
     var text by remember { mutableStateOf("") }
+
+    Text(
+        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        text = "Restaurant ID: " + id.toString()
+    )
 
     OutlinedTextField(
 //        state = rememberTextFieldState(initialText = "Hello"),
@@ -46,7 +51,7 @@ fun EditRestaurantTextFields(modifier: Modifier) {
 
 
 @Composable
-fun EditRestaurantScreen (modifier: Modifier) {
+fun EditRestaurantScreen (modifier: Modifier, id: Int) {
     val context = LocalContext.current
     val restaurants = remember {
         mutableStateListOf<Restaurant>().apply {
@@ -54,10 +59,7 @@ fun EditRestaurantScreen (modifier: Modifier) {
         }
     }
     Column(modifier = modifier.fillMaxWidth()){
-
-        MenuBar(modifier)
-
-        EditRestaurantTextFields(modifier)
+        EditRestaurantTextFields(modifier, id)
 
         Button(onClick = {
             val numRestaurants = restaurants.size
@@ -78,8 +80,8 @@ fun EditRestaurantScreen (modifier: Modifier) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun EditRestaurantScreenPreview() {
-    EditRestaurantScreen(modifier = Modifier)
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun EditRestaurantScreenPreview() {
+//    EditRestaurantScreen(modifier = Modifier, 2)
+//}

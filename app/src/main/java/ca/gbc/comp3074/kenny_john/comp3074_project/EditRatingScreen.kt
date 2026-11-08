@@ -62,8 +62,6 @@ fun EditRatingScreen (modifier: Modifier) {
     }
     Column(modifier = modifier.fillMaxWidth()){
 
-        MenuBar(modifier)
-
         EditRatingTextFields(modifier)
 
         Button(onClick = {
