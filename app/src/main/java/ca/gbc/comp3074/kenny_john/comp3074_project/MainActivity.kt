@@ -183,7 +183,7 @@ fun RestaurantApp(viewModel: RestaurantViewModel) {
 
                 EditRestaurantScreen(
                     modifier = Modifier,
-                    restaurant = restaurant!!,
+                    restaurant = restaurant,
                     onUpdateRestaurantClick = viewModel::updateRestaurant,
 
                 )
