@@ -23,7 +23,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,6 +36,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 
 @Composable
@@ -52,7 +71,7 @@ fun RestaurantItem(restaurant: Restaurant, onRestaurantDetailsClick: (Int) -> Un
             )
             Spacer(modifier = Modifier.height(5.dp))
             Text(
-                text = restaurant.rating,
+                text = restaurant.address,
                 fontSize = 16.sp
             )
             Button(
@@ -104,13 +123,22 @@ fun LazyRestaurantList(
 fun RestaurantsScreen (
     modifier: Modifier,
     onRestaurantDetailsClick: (Int) -> Unit,
-    onRestaurantsSearchClick: () -> Unit
+    onRestaurantsSearchClick: () -> Unit,
+    onCreateRestaurantScreenClick: () -> Unit,
+    restaurants: List<Restaurant>
 ) {
-    val context = LocalContext.current
-    val restaurants = remember { loadRestaurants(context)}
 
 
     Column(modifier = modifier.fillMaxWidth()){
+        Button(
+            onClick = {
+                onCreateRestaurantScreenClick()
+            },
+            modifier = Modifier.padding(16.dp)) {
+            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+            Text(text = "Create Restaurant")
+
+        }
 //        Button(
 //            onClick = {
 //                onRestaurantsSearchClick()

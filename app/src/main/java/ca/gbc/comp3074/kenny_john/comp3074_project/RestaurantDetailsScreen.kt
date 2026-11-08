@@ -17,48 +17,39 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun RestaurantDetailsTextFields(modifier: Modifier, id: Int) {
-    val context = LocalContext.current
-    val restaurant = loadRestaurantById(context, id)
-
-    if (restaurant != null) {
-        Text(
-            modifier = Modifier.fillMaxWidth().padding(16.dp, top=48.dp),
-            text = restaurant.name,
-            fontSize = 32.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center
-        )
-
-        Text(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
-            text = restaurant.rating,
-            fontSize = 20.sp,
-            textAlign = TextAlign.Center
-        )
-    } else {
-        Text(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
-            text = "Restaurant Not Found",
-            fontSize = 32.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center
-        )
-    }
-}
-
-@Composable
-fun RestaurantDetailsScreen (modifier: Modifier, id: Int, onEditRestaurantClick: (Int) -> Unit, onCreateRatingClick: (Int) -> Unit) {
+fun RestaurantDetailsScreen (modifier: Modifier, restaurant: Restaurant, onEditRestaurantClick: (Int) -> Unit, onCreateRatingClick: (Int) -> Unit) {
 
     Column(modifier = modifier.fillMaxWidth()){
 
-        RestaurantDetailsTextFields(modifier, id)
+        if (restaurant != null) {
+            Text(
+                modifier = Modifier.fillMaxWidth().padding(16.dp, top=48.dp),
+                text = restaurant.name,
+                fontSize = 32.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
+            )
 
+            Text(
+                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                text = restaurant.address,
+                fontSize = 20.sp,
+                textAlign = TextAlign.Center
+            )
+        } else {
+            Text(
+                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                text = "Restaurant Not Found",
+                fontSize = 32.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
+            )
+        }
         Spacer(modifier = Modifier.weight(1f))
 
         Button(
             onClick = {
-                onEditRestaurantClick(id)
+                onEditRestaurantClick(restaurant.id)
             },
             modifier = modifier.fillMaxWidth().padding(16.dp)) {
 
@@ -69,7 +60,7 @@ fun RestaurantDetailsScreen (modifier: Modifier, id: Int, onEditRestaurantClick:
 
         Button(
             onClick = {
-                onCreateRatingClick(id)
+                onCreateRatingClick(restaurant.id)
             },
             modifier = modifier.fillMaxWidth().padding(16.dp)) {
 

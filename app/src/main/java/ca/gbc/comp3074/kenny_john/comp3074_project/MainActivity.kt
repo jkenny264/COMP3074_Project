@@ -43,13 +43,36 @@ import kotlin.collections.listOf
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val database = AppDatabase.getDatabase(applicationContext)
         setContent {
             COMP3074_ProjectTheme {
-                RestaurantApp()
+
+                val viewModel: RestaurantViewModel = viewModel(
+                    factory = RestaurantViewModelFactory(
+                        database.restaurantDao()
+                    )
+                )
+
+
+                RestaurantApp(viewModel)
             }
         }
     }
@@ -57,8 +80,14 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RestaurantApp() {
+fun RestaurantApp(viewModel: RestaurantViewModel) {
+
+
+
     val navController = rememberNavController()
+
+    val restaurants by viewModel.restaurants
+        .collectAsStateWithLifecycle(initialValue = emptyList())
 
 
     Scaffold(
@@ -69,19 +98,6 @@ fun RestaurantApp() {
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.LightGray
                 ),
-//                navigationIcon = {
-//                    IconButton(
-//                        onClick = {
-//                            navController.popBackStack()
-//                        }
-//                    ) {
-//                        Icon(
-//                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-//                            contentDescription = "Back"
-//                        )
-//                    }
-//
-//                },
 
                 actions = {
                     IconButton(
@@ -135,8 +151,12 @@ fun RestaurantApp() {
                         navController.navigate("restaurant_details/$id")
                     },
                     onRestaurantsSearchClick = {
-                        navController.navigate("restaurant_details")
-                    }
+                        navController.navigate("restaurants_search_screen")
+                    },
+                    onCreateRestaurantScreenClick = {
+                        navController.navigate("create_restaurant_screen")
+                    },
+                    restaurants = restaurants
                 )
             }
             composable(
@@ -148,9 +168,13 @@ fun RestaurantApp() {
 
                 val id = backStackEntry.arguments!!.getInt("id")
 
+                val restaurant by viewModel
+                    .getRestaurantById(id)
+                    .collectAsState(initial = null)
+
                 RestaurantDetailsScreen(
                     modifier = Modifier,
-                    id = id,
+                    restaurant = restaurant!!,
                     onEditRestaurantClick = {
                         navController.navigate("edit_restaurant_screen/$id")
                     },
@@ -159,6 +183,15 @@ fun RestaurantApp() {
                     }
                 )
             }
+
+            composable("create_restaurant_screen") {
+                CreateRestaurantScreen(
+                    modifier = Modifier,
+                    restaurants = restaurants as MutableList<Restaurant>,
+                    onAddRestaurantClick = viewModel::addRestaurant,
+                )
+            }
+
             composable(
                 route = "edit_restaurant_screen/{id}",
                 arguments = listOf(navArgument("id") {
@@ -168,9 +201,16 @@ fun RestaurantApp() {
 
                 val id = backStackEntry.arguments!!.getInt("id")
 
+                val restaurant by viewModel
+                    .getRestaurantById(id)
+                    .collectAsState(initial = null)
+
+
                 EditRestaurantScreen(
                     modifier = Modifier,
-                    id = id
+                    restaurant = restaurant!!,
+                    onUpdateRestaurantClick = viewModel::updateRestaurant,
+
                 )
             }
 
