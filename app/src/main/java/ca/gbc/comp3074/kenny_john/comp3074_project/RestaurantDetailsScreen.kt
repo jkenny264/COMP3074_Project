@@ -9,15 +9,13 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun RestaurantDetailsScreen (modifier: Modifier, restaurant: Restaurant, onEditRestaurantClick: (Int) -> Unit, onCreateRatingClick: (Int) -> Unit) {
+fun RestaurantDetailsScreen (modifier: Modifier, restaurant: Restaurant?, onEditRestaurantClick: (Int) -> Unit, onCreateRatingClick: (Int) -> Unit) {
 
     Column(modifier = modifier.fillMaxWidth()){
 
@@ -36,6 +34,28 @@ fun RestaurantDetailsScreen (modifier: Modifier, restaurant: Restaurant, onEditR
                 fontSize = 20.sp,
                 textAlign = TextAlign.Center
             )
+
+            Button(
+                onClick = {
+                    onEditRestaurantClick(restaurant.id)
+                },
+                modifier = modifier.fillMaxWidth().padding(16.dp)) {
+
+                Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+                Text(text = "Edit Restaurant")
+
+            }
+
+            Button(
+                onClick = {
+                    onCreateRatingClick(restaurant.id)
+                },
+                modifier = modifier.fillMaxWidth().padding(16.dp)) {
+
+                Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+                Text(text = "Create Rating")
+            }
+
         } else {
             Text(
                 modifier = Modifier.fillMaxWidth().padding(16.dp),
@@ -47,26 +67,7 @@ fun RestaurantDetailsScreen (modifier: Modifier, restaurant: Restaurant, onEditR
         }
         Spacer(modifier = Modifier.weight(1f))
 
-        Button(
-            onClick = {
-                onEditRestaurantClick(restaurant.id)
-            },
-            modifier = modifier.fillMaxWidth().padding(16.dp)) {
 
-            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-            Text(text = "Edit Restaurant")
-
-        }
-
-        Button(
-            onClick = {
-                onCreateRatingClick(restaurant.id)
-            },
-            modifier = modifier.fillMaxWidth().padding(16.dp)) {
-
-            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-            Text(text = "Create Rating")
-        }
 
     }
 }

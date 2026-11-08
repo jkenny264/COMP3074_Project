@@ -64,6 +64,12 @@ fun RestaurantItem(restaurant: Restaurant, onRestaurantDetailsClick: (Int) -> Un
                 .padding(16.dp)
                 .padding(16.dp)
         ) {
+
+            Text(
+                text = "Restaurant ID:" + restaurant.id,
+                fontSize = 16.sp,
+            )
+
             Text(
                 text = restaurant.name,
                 fontSize = 20.sp,

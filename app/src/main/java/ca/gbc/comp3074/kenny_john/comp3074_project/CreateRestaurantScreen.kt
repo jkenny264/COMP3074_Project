@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun CreateRestaurantScreen (modifier: Modifier,
-                            restaurants: List<Restaurant>,
                             onAddRestaurantClick: (String, String) -> Unit
 ) {
 
