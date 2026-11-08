@@ -48,15 +48,18 @@ fun RestaurantDetailsTextFields(modifier: Modifier, id: Int) {
 }
 
 @Composable
-fun RestaurantDetailsScreen (modifier: Modifier, id: Int) {
-    Column(modifier = modifier.fillMaxWidth()){
+fun RestaurantDetailsScreen (modifier: Modifier, id: Int, onEditRestaurantClick: (Int) -> Unit, onCreateRatingClick: (Int) -> Unit) {
 
-        MenuBar(modifier)
+    Column(modifier = modifier.fillMaxWidth()){
 
         RestaurantDetailsTextFields(modifier, id)
 
         Spacer(modifier = Modifier.weight(1f))
-        Button(onClick = {},
+
+        Button(
+            onClick = {
+                onEditRestaurantClick(id)
+            },
             modifier = modifier.fillMaxWidth().padding(16.dp)) {
 
             Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
@@ -64,11 +67,21 @@ fun RestaurantDetailsScreen (modifier: Modifier, id: Int) {
 
         }
 
+        Button(
+            onClick = {
+                onCreateRatingClick(id)
+            },
+            modifier = modifier.fillMaxWidth().padding(16.dp)) {
+
+            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+            Text(text = "Create Rating")
+        }
+
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun RestaurantDetailsScreenPreview() {
-    RestaurantDetailsScreen(modifier = Modifier, 1)
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun RestaurantDetailsScreenPreview() {
+//    RestaurantDetailsScreen(modifier = Modifier, 1)
+//}

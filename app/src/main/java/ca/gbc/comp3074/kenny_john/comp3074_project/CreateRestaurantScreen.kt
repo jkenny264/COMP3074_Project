@@ -55,8 +55,6 @@ fun CreateRestaurantScreen (modifier: Modifier) {
     }
     Column(modifier = modifier.fillMaxWidth()){
 
-        MenuBar(modifier)
-
         CreateRestaurantTextFields(modifier)
 
         Button(onClick = {

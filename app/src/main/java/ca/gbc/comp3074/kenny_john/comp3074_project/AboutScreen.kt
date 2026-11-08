@@ -55,8 +55,6 @@ fun AboutScreen(modifier: Modifier) {
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        MenuBar(modifier)
-
         Text(
             modifier = Modifier.fillMaxWidth().padding(top = 32.dp),
             text = "About Us",

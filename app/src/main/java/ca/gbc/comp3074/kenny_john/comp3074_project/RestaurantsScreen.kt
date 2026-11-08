@@ -69,12 +69,18 @@ fun RestaurantItem(restaurant: Restaurant, onRestaurantDetailsClick: (Int) -> Un
 }
 
 @Composable
-fun LazyRestaurantList(modifier: Modifier, restaurants: List<Restaurant>, onRestaurantDetailsClick: (Int) -> Unit) {
+fun LazyRestaurantList(
+    modifier: Modifier,
+    restaurants: List<Restaurant>,
+    onRestaurantDetailsClick: (Int) -> Unit
+) {
 
     LazyColumn (
         modifier = modifier.padding(16.dp)
             .fillMaxSize()
     ){
+
+
         item {
             Text(
                 text = "Restaurants",
@@ -95,12 +101,25 @@ fun LazyRestaurantList(modifier: Modifier, restaurants: List<Restaurant>, onRest
 
 
 @Composable
-fun RestaurantsScreen (modifier: Modifier, onRestaurantDetailsClick: (Int) -> Unit) {
+fun RestaurantsScreen (
+    modifier: Modifier,
+    onRestaurantDetailsClick: (Int) -> Unit,
+    onRestaurantsSearchClick: () -> Unit
+) {
     val context = LocalContext.current
     val restaurants = remember { loadRestaurants(context)}
 
 
     Column(modifier = modifier.fillMaxWidth()){
+//        Button(
+//            onClick = {
+//                onRestaurantsSearchClick()
+//            },
+//            modifier = Modifier.padding(16.dp)) {
+//            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+//            Text(text = "Search")
+//
+//        }
 
         LazyRestaurantList(modifier, restaurants, onRestaurantDetailsClick)
 

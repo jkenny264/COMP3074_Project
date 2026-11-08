@@ -21,27 +21,32 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun RestaurantsSearchScreen (modifier: Modifier) {
-    val context = LocalContext.current
-    val restaurants = remember { loadRestaurants(context)}
-    var text by remember { mutableStateOf("") }
+    
+    Text(
+        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        text = "Search Restaurants"
+    )
 
-    Column(modifier = modifier.fillMaxWidth()){
-
-        MenuBar(modifier)
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
-            value = text,
-            onValueChange = { text = it },
-            label = { Text("Restaurant Name") }
-        )
-        Button(onClick = {},
-            modifier = modifier.fillMaxWidth()) {
-            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-            Text(text = "Search")
-
-        }
-        LazyRestaurantList(modifier, restaurants, onRestaurantDetailsClick = {})
-    }
+//    val context = LocalContext.current
+//    val restaurants = remember { loadRestaurants(context)}
+//    var text by remember { mutableStateOf("") }
+//
+//    Column(modifier = modifier.fillMaxWidth()){
+//
+//        OutlinedTextField(
+//            modifier = Modifier.fillMaxWidth().padding(16.dp),
+//            value = text,
+//            onValueChange = { text = it },
+//            label = { Text("Restaurant Name") }
+//        )
+//        Button(onClick = {},
+//            modifier = modifier.fillMaxWidth()) {
+//            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+//            Text(text = "Search")
+//
+//        }
+//        LazyRestaurantList(modifier, restaurants, onRestaurantDetailsClick = {})
+//    }
 
 }
 

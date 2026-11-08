@@ -133,13 +133,16 @@ fun RestaurantApp() {
                     modifier = Modifier,
                     onRestaurantDetailsClick = { id ->
                         navController.navigate("restaurant_details/$id")
+                    },
+                    onRestaurantsSearchClick = {
+                        navController.navigate("restaurant_details")
                     }
                 )
             }
             composable(
                 route = "restaurant_details/{id}",
                 arguments = listOf(navArgument("id") {
-                    type = NavType.StringType
+                    type = NavType.IntType
                 })
             ) { backStackEntry ->
 
@@ -147,15 +150,51 @@ fun RestaurantApp() {
 
                 RestaurantDetailsScreen(
                     modifier = Modifier,
+                    id = id,
+                    onEditRestaurantClick = {
+                        navController.navigate("edit_restaurant_screen/$id")
+                    },
+                    onCreateRatingClick = {
+                        navController.navigate("create_rating_screen/$id")
+                    }
+                )
+            }
+            composable(
+                route = "edit_restaurant_screen/{id}",
+                arguments = listOf(navArgument("id") {
+                    type = NavType.IntType
+                })
+            ) { backStackEntry ->
+
+                val id = backStackEntry.arguments!!.getInt("id")
+
+                EditRestaurantScreen(
+                    modifier = Modifier,
                     id = id
                 )
             }
-            composable("restaurants_search_screen") {
-                RestaurantsSearchScreen(
-                    modifier = Modifier
+
+            composable(
+                route = "create_rating_screen/{id}",
+                arguments = listOf(navArgument("id") {
+                    type = NavType.IntType
+                })
+            ) { backStackEntry ->
+
+                val id = backStackEntry.arguments!!.getInt("id")
+
+                CreateRatingScreen(
+                    modifier = Modifier,
+                    restaurantId = id
                 )
             }
 
+//            composable("restaurants_search_screen") {
+//                RestaurantsSearchScreen(
+//                    modifier = Modifier
+//                )
+//            }
+
         }
 
 
@@ -165,61 +204,3 @@ fun RestaurantApp() {
 }
 
 
-
-@Composable
-fun MenuBar(modifier: Modifier
-) {
-
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .background(Color.LightGray),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-//        Button(
-////            onClick = ,
-//            modifier = modifier.padding(horizontal = 32.dp)
-//        ) {
-//            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-//            Text(text = "Back")
-//        }
-
-        Text(
-            text = "<Logo>",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Button(
-            onClick = {
-                //
-            },
-            modifier = modifier.padding(horizontal = 32.dp)
-        ) {
-
-            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-            Text(text = "Home")
-        }
-    }
-}
-
-@Composable
-fun PrgApp(modifier: Modifier) {
-
-}
-
-//@Composable
-//fun Greeting(name: String, modifier: Modifier = Modifier) {
-//    Text(
-//        text = "Hello $name!",
-//        modifier = modifier
-//    )
-//}
-//
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//    COMP3074_ProjectTheme {
-//        Greeting("Android")
-//    }
-//}
