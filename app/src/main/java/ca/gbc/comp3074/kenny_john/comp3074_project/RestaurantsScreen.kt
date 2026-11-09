@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -66,11 +67,6 @@ fun RestaurantItem(restaurant: Restaurant, onRestaurantDetailsClick: (Int) -> Un
         ) {
 
             Text(
-                text = "Restaurant ID:" + restaurant.id,
-                fontSize = 16.sp,
-            )
-
-            Text(
                 text = restaurant.name,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
@@ -80,9 +76,16 @@ fun RestaurantItem(restaurant: Restaurant, onRestaurantDetailsClick: (Int) -> Un
                 text = restaurant.address,
                 fontSize = 16.sp
             )
+            Spacer(modifier = Modifier.height(5.dp))
+            if (restaurant.rating != "") {
+                Text(
+                    text = restaurant.rating + " stars",
+                    fontSize = 16.sp
+                )
+            }
             Button(
                 onClick = {
-                    onRestaurantDetailsClick(restaurant.id.toInt())
+                    onRestaurantDetailsClick(restaurant.id)
                 },
                 modifier = Modifier.padding(16.dp)) {
                 Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))

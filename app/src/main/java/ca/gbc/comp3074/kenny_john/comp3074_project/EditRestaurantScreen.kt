@@ -25,7 +25,10 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun EditRestaurantScreen (modifier: Modifier, restaurant: Restaurant?, onUpdateRestaurantClick: (Restaurant) -> Unit) {
+fun EditRestaurantScreen (modifier: Modifier, restaurant: Restaurant?,
+                          onUpdateRestaurantClick: (Restaurant) -> Unit,
+                          navBack: () -> Unit
+) {
 
 
 
@@ -54,8 +57,7 @@ fun EditRestaurantScreen (modifier: Modifier, restaurant: Restaurant?, onUpdateR
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth().padding(16.dp),
                 value = rating,
-                onValueChange = { newRating -> rating = convertRating(newRating)
-                },
+                onValueChange = { newRating -> rating = convertRating(newRating) },
                 label = { Text("Restaurant Rating") },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Number
@@ -71,6 +73,7 @@ fun EditRestaurantScreen (modifier: Modifier, restaurant: Restaurant?, onUpdateR
                             rating = rating
                         )
                     )
+                    navBack()
                 },
                 modifier = modifier.fillMaxWidth().padding(16.dp)
             ) {
@@ -81,16 +84,6 @@ fun EditRestaurantScreen (modifier: Modifier, restaurant: Restaurant?, onUpdateR
             }
         }
     }
-}
-
-fun convertRating(rating: String): String {
-    if (rating.isEmpty() || rating.all { it.isDigit() }) {
-        Log.d("newRating: ", rating)
-        val ratingInt = (rating.toIntOrNull() ?: 0)/10
-        return if (ratingInt <= 0) "0"
-        else if (ratingInt >= 5) "5"
-        else ratingInt.toString()
-    } else return "0"
 }
 
 //@Preview(showBackground = true)
