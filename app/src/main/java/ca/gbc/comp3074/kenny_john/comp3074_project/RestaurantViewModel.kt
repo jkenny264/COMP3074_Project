@@ -1,5 +1,6 @@
 package ca.gbc.comp3074.kenny_john.comp3074_project
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.Flow
@@ -15,13 +16,15 @@ class RestaurantViewModel(
 
     fun addRestaurant(
         name: String,
-        address: String
+        address: String,
+        rating: String
     ) {
         viewModelScope.launch {
             restaurantDao.insert(
                 Restaurant(
                     name = name,
-                    address = address
+                    address = address,
+                    rating = rating
                 )
             )
         }
@@ -42,4 +45,5 @@ class RestaurantViewModel(
             restaurantDao.update(restaurant)
         }
     }
+
 }

@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun RestaurantDetailsScreen (modifier: Modifier, restaurant: Restaurant?, onEditRestaurantClick: (Int) -> Unit, onCreateRatingClick: (Int) -> Unit) {
+fun RestaurantDetailsScreen (modifier: Modifier, restaurant: Restaurant?, onEditRestaurantClick: (Int) -> Unit) {
 
     Column(modifier = modifier.fillMaxWidth()){
 
@@ -34,6 +34,14 @@ fun RestaurantDetailsScreen (modifier: Modifier, restaurant: Restaurant?, onEdit
                 fontSize = 20.sp,
                 textAlign = TextAlign.Center
             )
+            if (restaurant.rating != "") {
+                Text(
+                    modifier = Modifier.fillMaxWidth().padding(16.dp),
+                    text = restaurant.rating + " stars",
+                    fontSize = 20.sp,
+                    textAlign = TextAlign.Center
+                )
+            }
 
             Button(
                 onClick = {
@@ -44,16 +52,6 @@ fun RestaurantDetailsScreen (modifier: Modifier, restaurant: Restaurant?, onEdit
                 Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
                 Text(text = "Edit Restaurant")
 
-            }
-
-            Button(
-                onClick = {
-                    onCreateRatingClick(restaurant.id)
-                },
-                modifier = modifier.fillMaxWidth().padding(16.dp)) {
-
-                Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-                Text(text = "Create Rating")
             }
 
         } else {

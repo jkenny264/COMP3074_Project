@@ -1,6 +1,7 @@
 package ca.gbc.comp3074.kenny_john.comp3074_project
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -153,9 +154,6 @@ fun RestaurantApp(viewModel: RestaurantViewModel) {
                     restaurant = restaurant,
                     onEditRestaurantClick = {
                         navController.navigate("edit_restaurant_screen/$id")
-                    },
-                    onCreateRatingClick = {
-                        navController.navigate("create_rating_screen/$id")
                     }
                 )
             }
@@ -164,6 +162,9 @@ fun RestaurantApp(viewModel: RestaurantViewModel) {
                 CreateRestaurantScreen(
                     modifier = Modifier,
                     onAddRestaurantClick = viewModel::addRestaurant,
+                    navBack = {
+                        navController.navigate("restaurants_screen")
+                    }
                 )
             }
 
@@ -185,22 +186,10 @@ fun RestaurantApp(viewModel: RestaurantViewModel) {
                     modifier = Modifier,
                     restaurant = restaurant,
                     onUpdateRestaurantClick = viewModel::updateRestaurant,
-
-                )
-            }
-
-            composable(
-                route = "create_rating_screen/{id}",
-                arguments = listOf(navArgument("id") {
-                    type = NavType.IntType
-                })
-            ) { backStackEntry ->
-
-                val id = backStackEntry.arguments!!.getInt("id")
-
-                CreateRatingScreen(
-                    modifier = Modifier,
-                    restaurantId = id
+                    navBack = {
+                        val id = restaurant?.id
+                        navController.navigate("restaurant_details/$id")
+                    }
                 )
             }
 

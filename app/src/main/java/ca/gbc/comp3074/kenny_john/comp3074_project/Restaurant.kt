@@ -10,6 +10,7 @@ data class Restaurant(
     val id: Int = 0,
     val name: String,
     val address: String,
+    val rating: String
 //    val Phone: String,
 //    val Description: String,
 //    val tags: Array<String>
