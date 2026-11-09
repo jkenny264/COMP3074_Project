@@ -14,59 +14,46 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-@Composable
-fun CreateRestaurantTextFields(modifier: Modifier) {
-    var text by remember { mutableStateOf("") }
-
-    OutlinedTextField(
-//        state = rememberTextFieldState(initialText = "Hello"),
-        modifier = Modifier.fillMaxWidth().padding(16.dp),
-        value = text,
-        onValueChange = { text = it },
-        label = { Text("Restaurant ID") }
-    )
-
-    OutlinedTextField(
-//        state = rememberTextFieldState(initialText = "Hello"),
-        modifier = Modifier.fillMaxWidth().padding(16.dp),
-        value = text,
-        onValueChange = { text = it },
-        label = { Text("Restaurant Name") }
-    )
-
-}
-
 
 
 
 @Composable
-fun CreateRestaurantScreen (modifier: Modifier) {
-    val context = LocalContext.current
-    val restaurants = remember {
-        mutableStateListOf<Restaurant>().apply {
-            addAll(loadRestaurants(context))
-        }
-    }
+fun CreateRestaurantScreen (modifier: Modifier,
+                            onAddRestaurantClick: (String, String) -> Unit
+) {
+
+    var name by rememberSaveable { mutableStateOf("") }
+    var address by rememberSaveable { mutableStateOf("") }
+
     Column(modifier = modifier.fillMaxWidth()){
 
-        CreateRestaurantTextFields(modifier)
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            value = name,
+            onValueChange = { name = it },
+            label = { Text("Restaurant Name") }
+        )
 
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            value = address,
+            onValueChange = { address = it },
+            label = { Text("Restaurant Address") }
+        )
         Button(onClick = {
-            val numRestaurants = restaurants.size
-            val newRestaurant = Restaurant(
-                id = "${numRestaurants + 1000}",
-                name = "Restaurant ${numRestaurants + 1}",
-                rating = ""
+            onAddRestaurantClick(
+                name,
+                address
             )
-            restaurants.add(0, newRestaurant)
         },
-            modifier = modifier.fillMaxWidth().padding(16.dp)) {
+        modifier = modifier.fillMaxWidth().padding(16.dp)) {
 
             Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
             Text(text = "Add Restaurant")
@@ -76,8 +63,8 @@ fun CreateRestaurantScreen (modifier: Modifier) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun CreateRestaurantScreenPreview() {
-    CreateRestaurantScreen(modifier = Modifier)
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun CreateRestaurantScreenPreview() {
+//    CreateRestaurantScreen(modifier = Modifier)
+//}
