@@ -15,13 +15,15 @@ class RestaurantViewModel(
 
     fun addRestaurant(
         name: String,
-        address: String
+        address: String,
+        rating: String
     ) {
         viewModelScope.launch {
             restaurantDao.insert(
                 Restaurant(
                     name = name,
-                    address = address
+                    address = address,
+                    rating = rating
                 )
             )
         }

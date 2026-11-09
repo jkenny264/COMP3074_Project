@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
@@ -18,6 +19,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
@@ -26,11 +28,12 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun CreateRestaurantScreen (modifier: Modifier,
-                            onAddRestaurantClick: (String, String) -> Unit
+                            onAddRestaurantClick: (String, String, String) -> Unit
 ) {
 
     var name by rememberSaveable { mutableStateOf("") }
     var address by rememberSaveable { mutableStateOf("") }
+    var rating by rememberSaveable { mutableStateOf("") }
 
     Column(modifier = modifier.fillMaxWidth()){
 
@@ -47,10 +50,25 @@ fun CreateRestaurantScreen (modifier: Modifier,
             onValueChange = { address = it },
             label = { Text("Restaurant Address") }
         )
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            value = rating,
+            onValueChange = { newRating ->
+                if (newRating.isEmpty() || newRating.all { it.isDigit() }) {
+                    rating = newRating
+                }
+            },
+            label = { Text("Restaurant Rating") },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number
+            )
+        )
         Button(onClick = {
             onAddRestaurantClick(
                 name,
-                address
+                address,
+                rating
             )
         },
         modifier = modifier.fillMaxWidth().padding(16.dp)) {
